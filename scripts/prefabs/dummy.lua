@@ -99,6 +99,12 @@ local function fn()
         return inst
     end
 	
+	-- FOX: Dirty hack for eyebrella!
+	inst.DynamicShadow = {
+		SetSize = function() return true end,
+		SetEnabled = function() return true end,
+	}
+	
 	inst.items = {}
 	
 	inst:AddComponent("workable")
