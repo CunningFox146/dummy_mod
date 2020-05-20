@@ -11,9 +11,9 @@ if not env.MODROOT:find("workshop-") then
 end
 
 DUMMY_SLOTS = {
-	[1] = EQUIPSLOTS.HEAD,
+	[1] = EQUIPSLOTS.HANDS,
 	[2] = EQUIPSLOTS.BODY,
-	[3] = EQUIPSLOTS.HANDS,
+	[3] = EQUIPSLOTS.HEAD,
 }
 
 local containers = require "containers"
@@ -25,18 +25,18 @@ params.dummy =
 	{
 		slotpos =
 		{
-			Vector3(0, 64 + 32 + 8 + 4 - 15, 0), 
-			Vector3(0, -15, 0),
-			Vector3(0, -(64 + 32 + 8 + 4) - 15, 0), 
+			Vector3(-64 - 16, 0, 0), 
+			Vector3(0, 0, 0),
+			Vector3(64 + 16, 0, 0), 
 		},
 		slotbg =
 		{
-			{ image = "equip_slot_head.tex" },
-			{ image = "equip_slot_body.tex" },
 			{ image = "equip_slot.tex" },
+			{ image = "equip_slot_body.tex" },
+			{ image = "equip_slot_head.tex" },
 		},
-		animbank = "ui_cookpot_1x4",
-		animbuild = "ui_cookpot_1x4",
+		animbank = "ui_chest_3x1",
+		animbuild = "ui_chest_3x1",
 		pos = Vector3(200, 0, 0),
 	},
 	acceptsstacks = false,
@@ -59,3 +59,19 @@ containers.widgetsetup = function(container, prefab, ...)
 	return _widgetsetup(container, prefab, ...)
 end
 
+env.AddRecipe("dummy",
+{Ingredient("boards", 2), Ingredient("log", 1), Ingredient("beefalowool", 4)},
+RECIPETABS.TOWN,
+TECH.SCIENCE_TWO,
+"dummy_placer",
+nil,
+nil,
+nil,
+nil,
+"images/inventoryimages/dummy.xml",
+"dummy.tex")
+
+STRINGS.NAMES.DUMMY = "Dummy"
+STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"

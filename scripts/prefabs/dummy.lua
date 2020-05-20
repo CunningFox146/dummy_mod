@@ -1,6 +1,9 @@
 local assets =
 {
     Asset("ANIM", "anim/dummy02.zip"),
+	
+    Asset("IMAGE", "images/inventoryimages/dummy.tex"),
+    Asset("ATLAS", "images/inventoryimages/dummy.xml"),
 }
 
 local SYMBOLS = {
@@ -10,11 +13,9 @@ local SYMBOLS = {
 }
 
 local function UpdateEquip(inst, data)
-	print("**********\nUpdateEquip")
 	local items_to_unequip = {}
 	
 	for i, v in pairs(inst.items) do
-		print("CHECK", v, inst.components.container:GetItemSlot(v), v.components.inventoryitem.owner)
 		if v and not inst.components.container:GetItemSlot(v) then
 			table.insert(items_to_unequip, v)
 			inst.items[i] = nil
@@ -28,11 +29,9 @@ local function UpdateEquip(inst, data)
 		
 		inst.AnimState:ClearOverrideSymbol(symbol)
 		inst.AnimState:HideSymbol(symbol)
-		print("UNEQUIP", item)
 	end
 	
 	if data.item and data.item.components.equippable then
-		print("EQUIP", data.item)
 		local symbol = SYMBOLS[data.item.components.equippable.equipslot]
 		data.item.components.equippable:Equip(inst)
 		inst.AnimState:ShowSymbol(symbol)
@@ -44,9 +43,6 @@ local function UpdateEquip(inst, data)
 			end
 		end
 	end
-	
-	printwrap("items", inst.items)
-	print("**********\n")
 end
 
 local function OnBuild(inst)
@@ -129,4 +125,5 @@ local function fn()
     return inst
 end
 
-return Prefab("dummy", fn, assets, prefabs)
+return Prefab("dummy", fn, assets, prefabs),
+	MakePlacer("dummy_placer", "dummy", "dummy02", "anim")
