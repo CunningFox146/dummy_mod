@@ -1,6 +1,6 @@
 local assets =
 {
-    Asset("ANIM", "anim/dummy02.zip"),
+    Asset("ANIM", "anim/dummy.zip"),
 	
     Asset("IMAGE", "images/inventoryimages/dummy.tex"),
     Asset("ATLAS", "images/inventoryimages/dummy.xml"),
@@ -102,7 +102,7 @@ local function fn()
     inst.entity:AddNetwork()
 
     inst.AnimState:SetBank("dummy")
-    inst.AnimState:SetBuild("dummy02")
+    inst.AnimState:SetBuild("dummy")
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:HideSymbol("swap_hat")
     inst.AnimState:HideSymbol("swap_object")
@@ -151,4 +151,4 @@ local function fn()
 end
 
 return Prefab("dummy", fn, assets, prefabs),
-	MakePlacer("dummy_placer", "dummy", "dummy02", "anim")
+	MakePlacer("dummy_placer", "dummy", "dummy", "anim")
