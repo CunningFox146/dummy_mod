@@ -102,6 +102,8 @@ local function onworked(inst, worker, workleft)
     end
 end
 
+local SLOTS_INDEX = table.invert(DUMMY_SLOTS)
+
 local function fn()
     local inst = CreateEntity()
 
@@ -151,6 +153,15 @@ local function fn()
     inst.components.container:WidgetSetup("dummy")
 	inst.components.container.onopenfn = Jump
 	inst.components.container.onclosefn = Jump
+	
+	-- We can't just put item in the next slot. We need to find a valid one first!
+	local _GiveItem = inst.components.container.GiveItem
+	function inst.components.container:GiveItem(item, slot, ...)
+		if item and item.components.equippable and SLOTS_INDEX[item.components.equippable.equipslot] then
+			slot = SLOTS_INDEX[item.components.equippable.equipslot]
+		end
+		return _GiveItem(self, item, slot, ...)
+	end
 
 	MakeHauntableWork(inst)
 	

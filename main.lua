@@ -43,8 +43,24 @@ params.dummy =
 	type = "chest",
 }
 
+-- Chek if item:
+-- 1. Is equippable
+-- 2. Is item slot avalible
+-- 3. Make sure to use replicas since this is also called on client
+
 function params.dummy.itemtestfn(container, item, slot)
-	return item.replica and item.replica.equippable and item.replica.equippable:EquipSlot() == DUMMY_SLOTS[slot]
+	if item.replica and item.replica.equippable then
+		local inst = container.inst
+		local replica = inst.replica.container
+		for i = 1, replica:GetNumSlots() do
+			local equip = replica:GetItemInSlot(i)
+			if equip and equip.replica and equip.replica.equippable:EquipSlot() == item.replica.equippable:EquipSlot() then
+				return false
+			end
+		end
+		return true
+	end
+	return false
 end
 
 local _widgetsetup = containers.widgetsetup
