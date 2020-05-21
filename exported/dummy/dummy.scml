@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r4.1">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
     <folder id="0" name="charactertemplate">
         <file id="0" name="charactertemplate/charactertemplate-0.png" width="261" height="358" pivot_x="0.524904" pivot_y="0.0335196"/>
     </folder>
@@ -30,11 +30,12 @@
     </folder>
     <folder id="4" name="swap_object">
         <file id="0" name="swap_object/swap_object-0.png" width="125" height="194" pivot_x="0.152" pivot_y="0.180799"/>
-        <file id="1" name="swap_object/swap_object-2.png" width="71" height="204" pivot_x="0.43662" pivot_y="0.142096"/>
-        <file id="2" name="swap_object/swap_object-3.png" width="416" height="257" pivot_x="0.502404" pivot_y="0.428733"/>
-        <file id="3" name="swap_object/swap_object-5.png" width="99" height="228" pivot_x="0.212121" pivot_y="0.149123"/>
-        <file id="4" name="swap_object/swap_object-6.png" width="134" height="200" pivot_x="0.217351" pivot_y="0.1695"/>
-        <file id="5" name="swap_object/swap_object-7.png" width="131" height="187" pivot_x="0.214695" pivot_y="0.175602"/>
+        <file id="1" name="swap_object/swap_object-1.png" width="125" height="194" pivot_x="0.152" pivot_y="0.180799"/>
+        <file id="2" name="swap_object/swap_object-2.png" width="71" height="204" pivot_x="0.43662" pivot_y="0.142096"/>
+        <file id="3" name="swap_object/swap_object-3.png" width="416" height="257" pivot_x="0.502404" pivot_y="0.428733"/>
+        <file id="4" name="swap_object/swap_object-5.png" width="99" height="228" pivot_x="0.212121" pivot_y="0.149123"/>
+        <file id="5" name="swap_object/swap_object-6.png" width="134" height="200" pivot_x="0.217351" pivot_y="0.1695"/>
+        <file id="6" name="swap_object/swap_object-7.png" width="131" height="187" pivot_x="0.214695" pivot_y="0.175602"/>
     </folder>
     <folder id="5" name="lantern_overlay">
         <file id="0" name="lantern_overlay/lantern_overlay-0.png" width="344" height="368" pivot_x="0.306249" pivot_y="0.471673"/>
@@ -95,9 +96,9 @@
                     <object folder="3" file="0" x="-83.717094" y="0.869709" angle="268.090848"/>
                 </key>
             </timeline>
-            <timeline id="6" name="swap_object-0">
+            <timeline id="6" name="swap_object-1">
                 <key id="0" spin="0">
-                    <object folder="4" file="0" x="-1.950372" y="-4.060982" angle="273.532295"/>
+                    <object folder="4" file="1" x="-1.950372" y="-4.060982" angle="273.532295"/>
                 </key>
             </timeline>
             <timeline id="7" name="lantern_overlay-0">
@@ -264,10 +265,10 @@
                     <object folder="1" file="0" x="8.534772" y="1.34544" angle="272.761585"/>
                 </key>
                 <key id="1" time="83" spin="0">
-                    <object folder="1" file="0" x="8.534772" y="1.34544" angle="272.761585" scale_x="1" scale_y="0.98249"/>
+                    <object folder="1" file="0" x="8.534772" y="1.34544" angle="272.761585" scale_y="0.98249"/>
                 </key>
                 <key id="2" time="166" spin="0">
-                    <object folder="1" file="0" x="8.534772" y="1.34544" angle="272.761585" scale_x="1" scale_y="1.032658"/>
+                    <object folder="1" file="0" x="8.534772" y="1.34544" angle="272.761585" scale_y="1.032658"/>
                 </key>
                 <key id="3" time="250" spin="0">
                     <object folder="1" file="0" x="8.534772" y="1.34544" angle="272.761585"/>
@@ -292,21 +293,21 @@
                     <object folder="3" file="0" x="-83.717094" y="0.869709" angle="268.090848"/>
                 </key>
                 <key id="1" time="83" spin="0">
-                    <object folder="3" file="0" x="-83.65856" y="0.871517" angle="268.090848" scale_x="1" scale_y="0.98249"/>
+                    <object folder="3" file="0" x="-83.65856" y="0.871517" angle="268.090848" scale_y="0.98249"/>
                 </key>
                 <key id="2" time="166" spin="0">
-                    <object folder="3" file="0" x="-83.706511" y="0.870036" angle="268.090848" scale_x="1" scale_y="1.032658"/>
+                    <object folder="3" file="0" x="-83.706511" y="0.870036" angle="268.090848" scale_y="1.032658"/>
                 </key>
                 <key id="3" time="250" spin="0">
                     <object folder="3" file="0" x="-83.717094" y="0.869709" angle="268.090848"/>
                 </key>
             </timeline>
-            <timeline id="6" name="swap_object-0">
+            <timeline id="6" name="swap_object-1">
                 <key id="0" spin="0">
-                    <object folder="4" file="0" x="-1.950372" y="-4.060982" angle="273.532295"/>
+                    <object folder="4" file="1" x="-1.950372" y="-4.060982" angle="273.532295"/>
                 </key>
                 <key id="1" time="250" spin="0">
-                    <object folder="4" file="0" x="-1.950372" y="-4.060982" angle="273.532295"/>
+                    <object folder="4" file="1" x="-1.950372" y="-4.060982" angle="273.532295"/>
                 </key>
             </timeline>
             <timeline id="7" name="lantern_overlay-0">
@@ -380,16 +381,16 @@
                     <bone x="79.565392" angle="85.942071"/>
                 </key>
                 <key id="1" time="83" spin="-1">
-                    <bone x="79.565392" y="-0" angle="85.942071"/>
+                    <bone x="79.565392" angle="85.942071"/>
                 </key>
                 <key id="2" time="110">
-                    <bone x="79.565392" y="-0" angle="79.69824"/>
+                    <bone x="79.565392" angle="79.69824"/>
                 </key>
                 <key id="3" time="166">
-                    <bone x="79.565392" y="-0" angle="85.942071"/>
+                    <bone x="79.565392" angle="85.942071"/>
                 </key>
                 <key id="4" time="203" spin="-1">
-                    <bone x="79.565392" y="-0" angle="91.391522"/>
+                    <bone x="79.565392" angle="91.391522"/>
                 </key>
                 <key id="5" time="250" spin="0">
                     <bone x="79.565392" angle="85.942071"/>
@@ -529,15 +530,15 @@
                     <object folder="3" file="0" x="-83.717094" y="0.869709" angle="268.090848"/>
                 </key>
             </timeline>
-            <timeline id="6" name="swap_object-0">
+            <timeline id="6" name="swap_object-1">
                 <key id="0" spin="0">
-                    <object folder="4" file="0" x="-1.950372" y="-4.060982" angle="273.532295"/>
+                    <object folder="4" file="1" x="-1.950372" y="-4.060982" angle="273.532295"/>
                 </key>
                 <key id="1" time="80" spin="0">
-                    <object folder="4" file="0" x="-1.950372" y="-4.060982" angle="273.532295"/>
+                    <object folder="4" file="1" x="-1.950372" y="-4.060982" angle="273.532295"/>
                 </key>
                 <key id="2" time="240" spin="0">
-                    <object folder="4" file="0" x="-1.950372" y="-4.060982" angle="273.532295"/>
+                    <object folder="4" file="1" x="-1.950372" y="-4.060982" angle="273.532295"/>
                 </key>
             </timeline>
             <timeline id="7" name="lantern_overlay-0">
@@ -581,30 +582,30 @@
             </timeline>
             <timeline id="10" obj="2" name="bone_002" object_type="bone">
                 <key id="0" spin="0">
-                    <bone x="71.536571" y="-0" angle="1.501285"/>
+                    <bone x="71.536571" angle="1.501285"/>
                 </key>
                 <key id="1" time="80" spin="0">
-                    <bone x="71.536571" y="-0" angle="1.501285"/>
+                    <bone x="71.536571" angle="1.501285"/>
                 </key>
                 <key id="2" time="160" spin="0">
-                    <bone x="71.536571" y="-0" angle="1.501285"/>
+                    <bone x="71.536571" angle="1.501285"/>
                 </key>
                 <key id="3" time="240" spin="0">
-                    <bone x="71.536571" y="-0" angle="1.501285"/>
+                    <bone x="71.536571" angle="1.501285"/>
                 </key>
             </timeline>
             <timeline id="11" obj="3" name="bone_003" object_type="bone">
                 <key id="0" spin="-1">
-                    <bone x="91.252554" y="0" angle="0.992498"/>
+                    <bone x="91.252554" angle="0.992498"/>
                 </key>
                 <key id="1" time="80">
-                    <bone x="91.252554" y="-0" angle="355.748386"/>
+                    <bone x="91.252554" angle="355.748386"/>
                 </key>
                 <key id="2" time="160" spin="-1">
-                    <bone x="91.252554" y="-0" angle="3.582721"/>
+                    <bone x="91.252554" angle="3.582721"/>
                 </key>
                 <key id="3" time="240" spin="0">
-                    <bone x="91.252554" y="0" angle="0.992498"/>
+                    <bone x="91.252554" angle="0.992498"/>
                 </key>
             </timeline>
             <timeline id="12" obj="4" name="bone_004" object_type="bone">
@@ -623,16 +624,16 @@
             </timeline>
             <timeline id="13" obj="5" name="bone_005" object_type="bone">
                 <key id="0" spin="-1">
-                    <bone x="79.565392" y="-0" angle="85.942071"/>
+                    <bone x="79.565392" angle="85.942071"/>
                 </key>
                 <key id="1" time="80">
-                    <bone x="79.565392" y="0" angle="83.975328"/>
+                    <bone x="79.565392" angle="83.975328"/>
                 </key>
                 <key id="2" time="160" spin="-1">
-                    <bone x="79.565392" y="-0" angle="91.976971"/>
+                    <bone x="79.565392" angle="91.976971"/>
                 </key>
                 <key id="3" time="240" spin="0">
-                    <bone x="79.565392" y="-0" angle="85.942071"/>
+                    <bone x="79.565392" angle="85.942071"/>
                 </key>
             </timeline>
         </animation>
@@ -679,9 +680,9 @@
                     <object folder="3" file="0" x="1.189868" y="115.570476" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="6" name="swap_object-0">
+            <timeline id="6" name="swap_object-1">
                 <key id="0" spin="0">
-                    <object folder="4" file="0" x="83.495146" y="102.912621" angle="0"/>
+                    <object folder="4" file="1" x="83.495146" y="102.912621" angle="0"/>
                 </key>
             </timeline>
             <timeline id="7" name="lantern_overlay-0">
@@ -874,7 +875,7 @@
                     <object folder="3" file="0" x="1.189868" y="115.570476" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="6" name="swap_object-0">
+            <timeline id="6" name="swap_object-1">
                 <key id="0" time="300" spin="0">
                     <object folder="4" file="0" x="31.975518" y="243.597622" angle="0" scale_x="0.374242" scale_y="0.559176"/>
                 </key>
