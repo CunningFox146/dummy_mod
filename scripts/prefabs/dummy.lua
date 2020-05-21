@@ -8,6 +8,8 @@ local assets =
 
 local pass = function() return true end
 
+local builder = require("components/builder")
+
 local SYMBOLS = {
     [EQUIPSLOTS.HEAD] = "swap_hat",
     [EQUIPSLOTS.BODY] = "swap_body",
@@ -158,6 +160,18 @@ local function fn()
 			slot = SLOTS_INDEX[item.components.equippable.equipslot]
 		end
 		return _GiveItem(self, item, slot, ...)
+	end
+	
+	-- Strange, right? But most of the items just assume that owner has SG
+	-- So it's better just add it
+	inst:SetStateGraph("SGdummy")
+	
+	-- We don't really want to add builder component.
+	-- But green amulet doesn't check for it.
+	-- I mean, what other way we have to do it?
+	inst.components.builder = {}
+	for k, _ in pairs(builder) do
+		inst.components.builder[k] = pass
 	end
 
 	MakeHauntableWork(inst)

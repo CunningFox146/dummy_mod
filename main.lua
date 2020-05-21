@@ -103,3 +103,47 @@ STRINGS.NAMES.DUMMY = "Dummy"
 STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+
+-- Debug commands
+if CHEATS_ENABLED then
+	local BLACKLIST = {
+		world = true,
+		cave = true,
+		forest = true,
+		lavaarena = true,
+		quagmire = true,
+		forest_network = true,
+		cave_network = true,
+		lavaarena_network = true,
+		quagmire_network = true,
+		shard_network = true,
+		shard = true,
+	}
+
+	-- Equips every equippable item in game on dummy to check for crashes
+	function dum_TestItems(slot)
+		local items = {}
+		local dummy = SpawnAt("dummy", ThePlayer or Vector3(0, 0, 0))
+		
+		for pref, data in pairs(Prefabs) do
+			pcall(function()
+				if not BLACKLIST[pref] and data.fn then
+					print("TESTING", pref)
+					local item = SpawnPrefab(pref)
+					if item then
+						if item.components.equippable and (not slot or item.components.equippable.equip_slot == slot) then
+							table.insert(items, item)
+						else
+							item:Remove()
+						end
+					end
+				end
+			end)
+		end
+		
+		for i, item in ipairs(items) do
+			dummy.components.container:GiveItem(item)
+			dummy.components.container:RemoveItem(item):Remove()
+		end
+	end
+end
