@@ -36,6 +36,9 @@
         <file id="4" name="swap_object/swap_object-6.png" width="134" height="200" pivot_x="0.217351" pivot_y="0.1695"/>
         <file id="5" name="swap_object/swap_object-7.png" width="131" height="187" pivot_x="0.214695" pivot_y="0.175602"/>
     </folder>
+    <folder id="5" name="lantern_overlay">
+        <file id="0" name="lantern_overlay/lantern_overlay-0.png" width="344" height="368" pivot_x="0.306249" pivot_y="0.471673"/>
+    </folder>
     <entity id="0" name="dummy">
         <animation id="0" name="anim" length="100" interval="100">
             <mainline>
@@ -47,6 +50,7 @@
                     <object_ref id="4" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" timeline="3" key="0" z_index="5"/>
                     <object_ref id="6" timeline="5" key="0" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="0" z_index="7"/>
                 </key>
             </mainline>
             <timeline id="0" name="dummy-2">
@@ -82,6 +86,11 @@
             <timeline id="6" name="swap_object-0">
                 <key id="0" spin="0">
                     <object folder="4" file="0" x="83.495146" y="102.912621" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="7" name="lantern_overlay-0">
+                <key id="0" spin="0">
+                    <object folder="5" file="0" x="83.49515" y="102.91262"/>
                 </key>
             </timeline>
         </animation>
@@ -95,6 +104,7 @@
                     <object_ref id="4" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" timeline="3" key="0" z_index="5"/>
                     <object_ref id="6" timeline="5" key="0" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="0" z_index="7"/>
                 </key>
             </mainline>
             <timeline id="0" name="dummy-2">
@@ -130,6 +140,11 @@
             <timeline id="6" name="swap_object-0">
                 <key id="0" spin="0">
                     <object folder="4" file="0" x="83.495146" y="102.912621" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="7" name="lantern_overlay-0">
+                <key id="0" spin="0">
+                    <object folder="5" file="0" x="83.49515" y="102.91262"/>
                 </key>
             </timeline>
         </animation>
@@ -143,6 +158,7 @@
                     <object_ref id="4" timeline="4" key="0" z_index="4"/>
                     <object_ref id="5" timeline="3" key="0" z_index="5"/>
                     <object_ref id="6" timeline="5" key="0" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="0" z_index="7"/>
                 </key>
                 <key id="1" time="50">
                     <object_ref id="0" timeline="6" key="1" z_index="0"/>
@@ -152,6 +168,7 @@
                     <object_ref id="4" timeline="4" key="1" z_index="4"/>
                     <object_ref id="5" timeline="3" key="1" z_index="5"/>
                     <object_ref id="6" timeline="5" key="1" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="1" z_index="7"/>
                 </key>
                 <key id="2" time="100">
                     <object_ref id="0" timeline="6" key="1" z_index="0"/>
@@ -161,6 +178,7 @@
                     <object_ref id="4" timeline="4" key="1" z_index="4"/>
                     <object_ref id="5" timeline="3" key="2" z_index="5"/>
                     <object_ref id="6" timeline="5" key="2" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="2" z_index="7"/>
                 </key>
             </mainline>
             <timeline id="0" name="dummy-2">
@@ -168,7 +186,7 @@
                     <object folder="1" file="2" angle="0"/>
                 </key>
                 <key id="1" time="50">
-                    <object folder="1" file="2" angle="359.309723"/>
+                    <object folder="1" file="2" angle="357.455196" scale_x="1" scale_y="1"/>
                 </key>
             </timeline>
             <timeline id="1" name="dummy-1">
@@ -176,7 +194,7 @@
                     <object folder="1" file="1" y="48" angle="0"/>
                 </key>
                 <key id="1" time="50">
-                    <object folder="1" file="1" x="0.578271" y="47.996517" angle="359.309723"/>
+                    <object folder="1" file="1" x="2.131229" y="47.952663" angle="357.455196" scale_x="1" scale_y="1"/>
                 </key>
             </timeline>
             <timeline id="2" name="dummy-3">
@@ -184,15 +202,15 @@
                     <object folder="1" file="3" x="1" y="103" angle="0" scale_x="0.789447"/>
                 </key>
                 <key id="1" time="50">
-                    <object folder="1" file="3" x="2.240801" y="102.980478" angle="359.309723" scale_x="0.789447"/>
+                    <object folder="1" file="3" x="5.572277" y="102.854022" angle="357.455196" scale_x="0.789447" scale_y="1"/>
                 </key>
             </timeline>
             <timeline id="3" name="dummy-0">
                 <key id="0" spin="-1">
                     <object folder="1" file="0" x="-0.75188" y="116.541353" angle="3.678239"/>
                 </key>
-                <key id="1" time="50" spin="0">
-                    <object folder="1" file="0" x="0.652185" y="116.541954" angle="2.987962"/>
+                <key id="1" time="50">
+                    <object folder="1" file="0" x="4.423369" y="116.459805" angle="1.133435" scale_x="1" scale_y="1"/>
                 </key>
                 <key id="2" time="100">
                     <object folder="1" file="0" x="0.652185" y="116.541954" angle="2.987962"/>
@@ -203,15 +221,15 @@
                     <object folder="2" file="0" x="-0.970874" y="45.631068" angle="0"/>
                 </key>
                 <key id="1" time="50">
-                    <object folder="2" file="0" x="-0.421072" y="45.639453" angle="359.309723"/>
+                    <object folder="2" file="0" x="1.056131" y="45.629174" angle="357.455196" scale_x="1" scale_y="1"/>
                 </key>
             </timeline>
             <timeline id="5" name="swap_hat-0">
                 <key id="0" spin="-1">
                     <object folder="3" file="0" x="1.189868" y="115.570476" angle="0"/>
                 </key>
-                <key id="1" time="50" spin="0">
-                    <object folder="3" file="0" x="2.582096" y="115.547754" angle="359.309723"/>
+                <key id="1" time="50">
+                    <object folder="3" file="0" x="6.320095" y="115.40367" angle="357.455196" scale_x="1" scale_y="1"/>
                 </key>
                 <key id="2" time="100">
                     <object folder="3" file="0" x="2.582096" y="115.547754" angle="359.309723"/>
@@ -222,7 +240,18 @@
                     <object folder="4" file="0" x="83.495146" y="102.912621" angle="0"/>
                 </key>
                 <key id="1" time="50">
-                    <object folder="4" file="0" x="84.728908" y="101.89926" angle="359.309723"/>
+                    <object folder="4" file="0" x="87.982188" y="99.103893" angle="357.455196" scale_x="1" scale_y="1"/>
+                </key>
+            </timeline>
+            <timeline id="7" name="lantern_overlay-0">
+                <key id="0" spin="-1">
+                    <object folder="5" file="0" x="83.49515" y="102.91262"/>
+                </key>
+                <key id="1" time="50">
+                    <object folder="5" file="0" x="86.78187" y="100.156649" angle="357.455473" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="2" time="100">
+                    <object folder="5" file="0" x="83.49515" y="102.91262" angle="359.54"/>
                 </key>
             </timeline>
         </animation>
@@ -262,6 +291,7 @@
                     <object_ref id="4" timeline="4" key="4" z_index="4"/>
                     <object_ref id="5" timeline="3" key="0" z_index="5"/>
                     <object_ref id="6" timeline="5" key="0" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="0" z_index="7"/>
                 </key>
                 <key id="7" time="350">
                     <object_ref id="0" timeline="6" key="1" z_index="0"/>
@@ -271,6 +301,7 @@
                     <object_ref id="4" timeline="4" key="4" z_index="4"/>
                     <object_ref id="5" timeline="3" key="1" z_index="5"/>
                     <object_ref id="6" timeline="5" key="1" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="1" z_index="7"/>
                 </key>
                 <key id="8" time="400">
                     <object_ref id="0" timeline="6" key="2" z_index="0"/>
@@ -280,6 +311,7 @@
                     <object_ref id="4" timeline="4" key="4" z_index="4"/>
                     <object_ref id="5" timeline="3" key="2" z_index="5"/>
                     <object_ref id="6" timeline="5" key="2" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="2" z_index="7"/>
                 </key>
                 <key id="9" time="450">
                     <object_ref id="0" timeline="6" key="3" z_index="0"/>
@@ -289,6 +321,7 @@
                     <object_ref id="4" timeline="4" key="4" z_index="4"/>
                     <object_ref id="5" timeline="3" key="3" z_index="5"/>
                     <object_ref id="6" timeline="5" key="3" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="3" z_index="7"/>
                 </key>
                 <key id="10" time="500">
                     <object_ref id="0" timeline="6" key="4" z_index="0"/>
@@ -298,6 +331,7 @@
                     <object_ref id="4" timeline="4" key="5" z_index="4"/>
                     <object_ref id="5" timeline="3" key="4" z_index="5"/>
                     <object_ref id="6" timeline="5" key="4" z_index="6"/>
+                    <object_ref id="7" timeline="7" key="4" z_index="7"/>
                 </key>
             </mainline>
             <timeline id="0" name="dummy-2">
@@ -420,6 +454,23 @@
                 </key>
                 <key id="4" time="500" spin="0">
                     <object folder="4" file="0" x="83.495146" y="102.912621" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="7" name="lantern_overlay-0">
+                <key id="0" time="300" spin="0">
+                    <object folder="5" file="0" x="31.97552" y="243.59762" angle="359.31" scale_x="0.37424" scale_y="0.55918"/>
+                </key>
+                <key id="1" time="350" spin="0">
+                    <object folder="5" file="0" x="47.60883" y="154.3566" angle="359.31"/>
+                </key>
+                <key id="2" time="400" spin="0">
+                    <object folder="5" file="0" x="88.20596" y="102.9233" angle="359.31"/>
+                </key>
+                <key id="3" time="450" spin="0">
+                    <object folder="5" file="0" x="83.49515" y="102.91262" angle="359.31"/>
+                </key>
+                <key id="4" time="500" spin="0">
+                    <object folder="5" file="0" x="83.49515" y="102.91262" angle="359.31"/>
                 </key>
             </timeline>
         </animation>
