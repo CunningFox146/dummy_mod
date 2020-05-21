@@ -59,6 +59,18 @@ containers.widgetsetup = function(container, prefab, ...)
 	return _widgetsetup(container, prefab, ...)
 end
 
+-- This is a hack to stop item consumption when equipped on dummy
+env.AddComponentPostInit("fueled", function(self)
+	local _StartConsuming = self.StartConsuming
+	function self:StartConsuming(...)
+		if self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner and
+		self.inst.components.inventoryitem.owner.prefab == "dummy" then
+			return true
+		end
+		return _StartConsuming(self, ...)
+	end
+end)
+
 env.AddRecipe("dummy",
 {Ingredient("boards", 2), Ingredient("log", 1), Ingredient("beefalowool", 4)},
 RECIPETABS.TOWN,

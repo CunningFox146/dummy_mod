@@ -6,6 +6,8 @@ local assets =
     Asset("ATLAS", "images/inventoryimages/dummy.xml"),
 }
 
+local pass = function() return true end
+
 local SYMBOLS = {
     [EQUIPSLOTS.HEAD] = "swap_hat",
     [EQUIPSLOTS.BODY] = "swap_body",
@@ -27,6 +29,11 @@ local function UpdateEquip(inst, data)
 		
 		item.components.equippable:Unequip(inst)
 		
+		if item.components.useableitem and item.components.useableitem._onusefn then
+			item.components.useableitem.onusefn = item.components.useableitem._onusefn
+			item.components.useableitem._onusefn = nil
+		end
+		
 		inst.AnimState:ClearOverrideSymbol(symbol)
 		inst.AnimState:HideSymbol(symbol)
 	end
@@ -35,6 +42,12 @@ local function UpdateEquip(inst, data)
 		local symbol = SYMBOLS[data.item.components.equippable.equipslot]
 		data.item.components.equippable:Equip(inst)
 		inst.AnimState:ShowSymbol(symbol)
+		
+		-- We don't want items to be used on dummy
+		if data.item.components.useableitem then
+			data.item.components.useableitem._onusefn = data.item.components.useableitem.onusefn
+			data.item.components.useableitem.onusefn = pass
+		end
 		
 		for i = 1, 3 do
 			if not inst.items[i] then
@@ -66,12 +79,18 @@ end
 local function onworked(inst, worker, workleft)
     if workleft > 0 then
         inst.AnimState:PlayAnimation("hit")
+        inst.AnimState:PushAnimation("idle")
 
         if inst.components.container ~= nil then
             inst.components.container:DropEverything()
             inst.components.container:Close()
         end
     end
+end
+
+local function PlayHit(inst)
+	inst.AnimState:PlayAnimation("hit")
+	inst.AnimState:PushAnimation("idle")
 end
 
 local function fn()
@@ -101,8 +120,8 @@ local function fn()
 	
 	-- FOX: Dirty hack for eyebrella!
 	inst.DynamicShadow = {
-		SetSize = function() return true end,
-		SetEnabled = function() return true end,
+		SetSize = pass,
+		SetEnabled = pass,
 	}
 	
 	inst.items = {}
@@ -119,8 +138,8 @@ local function fn()
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("dummy")
-	-- inst.components.container.onopenfn = onopen
-	-- inst.components.container.onclosefn = onclose
+	inst.components.container.onopenfn = PlayHit
+	inst.components.container.onclosefn = PlayHit
 
 	MakeHauntableWork(inst)
 	
