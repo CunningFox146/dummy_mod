@@ -42,7 +42,6 @@ local function UpdateEquip(inst, data)
 		
 		inst.AnimState:ClearOverrideSymbol(symbol)
 		inst.AnimState:HideSymbol(symbol)
-		
 		play_jump = true
 	end
 	
@@ -50,6 +49,7 @@ local function UpdateEquip(inst, data)
 		local symbol = SYMBOLS[data.item.components.equippable.equipslot]
 		data.item.components.equippable:Equip(inst)
 		inst.AnimState:ShowSymbol(symbol)
+		play_jump = true
 		
 		-- We don't want items to be used on dummy
 		if data.item.components.useableitem then
@@ -63,8 +63,6 @@ local function UpdateEquip(inst, data)
 				break
 			end
 		end
-		
-		play_jump = true
 	end
 	
 	if play_jump then
@@ -115,7 +113,6 @@ local function fn()
     inst.AnimState:SetBank("dummy")
     inst.AnimState:SetBuild("dummy")
     inst.AnimState:PlayAnimation("idle")
-	
     inst.AnimState:HideSymbol("swap_hat")
     inst.AnimState:HideSymbol("swap_object")
     inst.AnimState:HideSymbol("swap_body")
