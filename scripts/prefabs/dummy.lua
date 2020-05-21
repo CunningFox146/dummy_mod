@@ -14,8 +14,14 @@ local SYMBOLS = {
     [EQUIPSLOTS.HANDS] = "swap_object",
 }
 
+local function Jump(inst)
+	inst.AnimState:PlayAnimation("open")
+	inst.AnimState:PushAnimation("idle")
+end
+
 local function UpdateEquip(inst, data)
 	local items_to_unequip = {}
+	local play_jump = false
 	
 	for i, v in pairs(inst.items) do
 		if v and not inst.components.container:GetItemSlot(v) then
@@ -36,6 +42,8 @@ local function UpdateEquip(inst, data)
 		
 		inst.AnimState:ClearOverrideSymbol(symbol)
 		inst.AnimState:HideSymbol(symbol)
+		
+		play_jump = true
 	end
 	
 	if data.item and data.item.components.equippable then
@@ -55,6 +63,12 @@ local function UpdateEquip(inst, data)
 				break
 			end
 		end
+		
+		play_jump = true
+	end
+	
+	if play_jump then
+		Jump(inst)
 	end
 end
 
@@ -88,11 +102,6 @@ local function onworked(inst, worker, workleft)
     end
 end
 
-local function PlayHit(inst)
-	inst.AnimState:PlayAnimation("hit")
-	inst.AnimState:PushAnimation("idle")
-end
-
 local function fn()
     local inst = CreateEntity()
 
@@ -104,9 +113,11 @@ local function fn()
     inst.AnimState:SetBank("dummy")
     inst.AnimState:SetBuild("dummy")
     inst.AnimState:PlayAnimation("idle")
+	
     inst.AnimState:HideSymbol("swap_hat")
     inst.AnimState:HideSymbol("swap_object")
     inst.AnimState:HideSymbol("swap_body")
+    inst.AnimState:Hide("LANTERN_OVERLAY")
 	
 	inst:AddTag("structure")
 
@@ -138,8 +149,8 @@ local function fn()
 
     inst:AddComponent("container")
     inst.components.container:WidgetSetup("dummy")
-	inst.components.container.onopenfn = PlayHit
-	inst.components.container.onclosefn = PlayHit
+	inst.components.container.onopenfn = Jump
+	inst.components.container.onclosefn = Jump
 
 	MakeHauntableWork(inst)
 	
