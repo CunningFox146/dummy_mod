@@ -1,7 +1,17 @@
 local MOBS_LIST = GetModConfigData("mobs")
-PrefabFiles = {
+
+PrefabFiles =
+{
 	"dummy",
 }
+
+Assets =
+{
+    Asset("IMAGE", "minimap/minimap_dummy.tex"),
+    Asset("ATLAS", "minimap/minimap_dummy.xml"),
+}
+
+AddMinimapAtlas("minimap/minimap_dummy.xml")
 
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
@@ -128,6 +138,21 @@ STRINGS.NAMES.DUMMY = "Dummy"
 STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WILSON.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WILLOW.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WOLFANG.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WENDY.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WOODIE.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WES.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WAXWELL.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WATHGRITHR.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WEBBER.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WINONA.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WARLY.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WORTOX.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+-- STRINGS.CHARACTERS.WORMWOOD.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+STRINGS.CHARACTERS.WURT.DESCRIBE.DUMMY = "He is alive, florp?"
 
 -- Debug commands
 if CHEATS_ENABLED then

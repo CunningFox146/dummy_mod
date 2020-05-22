@@ -119,6 +119,8 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddNetwork()
 
+    inst.MiniMapEntity:SetIcon("dummy.png")
+
     inst.AnimState:SetBank("dummy")
     inst.AnimState:SetBuild("dummy")
     inst.AnimState:PlayAnimation("idle")
