@@ -11,10 +11,19 @@ if not env.MODROOT:find("workshop-") then
 end
 
 DUMMY_SLOTS = {
-	[1] = EQUIPSLOTS.HANDS,
-	[2] = EQUIPSLOTS.BODY,
-	[3] = EQUIPSLOTS.HEAD,
+	[EQUIPSLOTS.HANDS] = 1,
+	[EQUIPSLOTS.BODY] = 2,
+	[EQUIPSLOTS.HEAD] = 3,
 }
+
+-- Extra equip slots compatibility
+if EQUIPSLOTS.BACK then
+	DUMMY_SLOTS[EQUIPSLOTS.BACK] = 2
+end
+
+if EQUIPSLOTS.NECK then
+	DUMMY_SLOTS[EQUIPSLOTS.NECK] = 2
+end
 
 local containers = require "containers"
 local params = {}
@@ -47,6 +56,21 @@ params.dummy =
 -- 1. Is equippable
 -- 2. Is item slot avalible
 -- 3. Make sure to use replicas since this is also called on client
+-- Convert slots back from modded slots
+
+local function GetSlot(item)
+	local slot = item.replica.equippable:EquipSlot()
+	
+	if EQUIPSLOTS.BACK and slot == EQUIPSLOTS.BACK then
+		return EQUIPSLOTS.BODY
+	end
+
+	if EQUIPSLOTS.NECK and slot == EQUIPSLOTS.NECK then
+		return EQUIPSLOTS.BODY
+	end
+	
+	return slot
+end
 
 function params.dummy.itemtestfn(container, item, slot)
 	if item.replica and item.replica.equippable then
@@ -54,7 +78,8 @@ function params.dummy.itemtestfn(container, item, slot)
 		local replica = inst.replica.container
 		for i = 1, replica:GetNumSlots() do
 			local equip = replica:GetItemInSlot(i)
-			if equip and equip.replica and equip.replica.equippable:EquipSlot() == item.replica.equippable:EquipSlot() then
+			if equip and equip.replica and
+			GetSlot(equip) == GetSlot(item) then
 				return false
 			end
 		end

@@ -10,11 +10,18 @@ local pass = function() return true end
 
 local builder = require("components/builder")
 
-local SYMBOLS = {
-    [EQUIPSLOTS.HEAD] = "swap_hat",
-    [EQUIPSLOTS.BODY] = "swap_body",
-    [EQUIPSLOTS.HANDS] = "swap_object",
+-- Generate symbol swaps dynamicly for mod compatibility
+local SYMBOLS = {}
+
+local slot_swaps = {
+    [1] = "swap_hat",
+    [2] = "swap_body",
+    [3] = "swap_object",
 }
+
+for name, id in pairs(DUMMY_SLOTS) do
+	SYMBOLS[name] = slot_swaps[id]
+end
 
 local function Jump(inst)
 	inst.AnimState:PlayAnimation("open")
@@ -102,7 +109,7 @@ local function onworked(inst, worker, workleft)
     end
 end
 
-local SLOTS_INDEX = table.invert(DUMMY_SLOTS)
+local SLOTS_INDEX = DUMMY_SLOTS
 
 local function fn()
     local inst = CreateEntity()
