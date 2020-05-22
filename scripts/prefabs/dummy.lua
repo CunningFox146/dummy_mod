@@ -14,9 +14,9 @@ local builder = require("components/builder")
 local SYMBOLS = {}
 
 local slot_swaps = {
-    [1] = "swap_hat",
+    [1] = "swap_object",
     [2] = "swap_body",
-    [3] = "swap_object",
+    [3] = "swap_hat",
 }
 
 for name, id in pairs(DUMMY_SLOTS) do
