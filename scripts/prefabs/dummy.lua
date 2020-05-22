@@ -159,7 +159,10 @@ local function fn()
 		if item and item.components.equippable and SLOTS_INDEX[item.components.equippable.equipslot] then
 			slot = SLOTS_INDEX[item.components.equippable.equipslot]
 		end
-		return _GiveItem(self, item, slot, ...)
+		if slot then
+			return _GiveItem(self, item, slot, ...)
+		end
+		return false
 	end
 	
 	-- Strange, right? But most of the items just assume that owner has SG
@@ -183,5 +186,12 @@ local function fn()
     return inst
 end
 
+local function placer(inst)
+    inst.AnimState:HideSymbol("swap_hat")
+    inst.AnimState:HideSymbol("swap_object")
+    inst.AnimState:HideSymbol("swap_body")
+    inst.AnimState:Hide("LANTERN_OVERLAY")
+end
+
 return Prefab("dummy", fn, assets, prefabs),
-	MakePlacer("dummy_placer", "dummy", "dummy", "anim")
+	MakePlacer("dummy_placer", "dummy", "dummy", "anim", nil, nil, nil, nil, nil, nil, placer)
