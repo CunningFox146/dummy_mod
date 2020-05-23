@@ -120,8 +120,6 @@ local function fn()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
-    inst.MiniMapEntity:SetIcon("dummy.png")
-
     inst.AnimState:SetBank("dummy")
     inst.AnimState:SetBuild("dummy")
     inst.AnimState:PlayAnimation("idle")
@@ -130,6 +128,8 @@ local function fn()
     inst.AnimState:HideSymbol("swap_body")
     inst.AnimState:Hide("LANTERN_OVERLAY")
 	
+    inst.MiniMapEntity:SetIcon("dummy.png")
+
 	inst:AddTag("structure")
 
 	MakeObstaclePhysics(inst, .3)

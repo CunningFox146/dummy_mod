@@ -8,7 +8,7 @@
         <file id="1" name="dummy/dummy-1.png" width="68" height="89" pivot_x="0.485294" pivot_y="0.134831"/>
         <file id="2" name="dummy/dummy-2.png" width="126" height="103" pivot_x="0.492063" pivot_y="0.281553"/>
         <file id="3" name="dummy/dummy-3.png" width="286" height="68" pivot_x="0.5" pivot_y="0.441176"/>
-        <file id="4" name="dummy/dummy-4.png" width="119" height="143" pivot_x="0.546218" pivot_y="0.167832"/>
+        <file id="4" name="dummy/dummy-4.png" width="192" height="140" pivot_x="0.50599" pivot_y="0.172726"/>
     </folder>
     <folder id="2" name="swap_body">
         <file id="0" name="swap_body/swap_body-0.png" width="92" height="128" pivot_x="0.480435" pivot_y="0.173438"/>
@@ -138,7 +138,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="1" name="burn" length="100" interval="100">
+        <animation id="1" name="burnt" length="100" interval="100">
             <mainline>
                 <key id="0">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -146,7 +146,7 @@
             </mainline>
             <timeline id="0" name="dummy-4">
                 <key id="0" spin="0">
-                    <object folder="1" file="4" x="2.898551" y="1.449275"/>
+                    <object folder="1" file="4" x="0.59642" y="1.532093" angle="0"/>
                 </key>
             </timeline>
         </animation>

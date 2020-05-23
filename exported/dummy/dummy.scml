@@ -5,7 +5,7 @@
         <file id="1" name="dummy/dummy-1.png" width="68" height="89" pivot_x="0.485294" pivot_y="0.134831"/>
         <file id="2" name="dummy/dummy-2.png" width="126" height="103" pivot_x="0.492063" pivot_y="0.281553"/>
         <file id="3" name="dummy/dummy-3.png" width="286" height="68" pivot_x="0.5" pivot_y="0.441176"/>
-        <file id="4" name="dummy/dummy-4.png" width="119" height="143" pivot_x="0.546218" pivot_y="0.167832"/>
+        <file id="4" name="dummy/dummy-4.png" width="192" height="140" pivot_x="0.50599" pivot_y="0.172726"/>
     </folder>
     <entity id="0" name="dummy">
         <animation id="0" name="anim" length="1000" interval="100">
