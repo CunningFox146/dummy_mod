@@ -10,6 +10,9 @@ local pass = function() return true end
 
 local builder = require("components/builder")
 
+local SLOTS_INDEX = DUMMY_SLOTS
+local SLOTS_COUNT = 3
+
 -- Generate symbol swaps dynamicly for mod compatibility
 local SYMBOLS = {}
 
@@ -28,7 +31,25 @@ local function Jump(inst)
 	inst.AnimState:PushAnimation("idle")
 end
 
+local function Upequip(inst, item)
+	local symbol = SYMBOLS[item.components.equippable.equipslot]
+		
+	item.components.equippable:Unequip(inst)
+	
+	if item.components.useableitem and item.components.useableitem._onusefn then
+		item.components.useableitem.onusefn = item.components.useableitem._onusefn
+		item.components.useableitem._onusefn = nil
+	end
+	
+	inst.AnimState:ClearOverrideSymbol(symbol)
+	inst.AnimState:HideSymbol(symbol)
+end
+
 local function UpdateEquip(inst, data)
+    if inst:HasTag("burnt") then
+        return
+    end
+	
 	local items_to_unequip = {}
 	local play_jump = false
 	
@@ -40,17 +61,7 @@ local function UpdateEquip(inst, data)
 	end
 	
 	for i, item in ipairs(items_to_unequip) do
-		local symbol = SYMBOLS[item.components.equippable.equipslot]
-		
-		item.components.equippable:Unequip(inst)
-		
-		if item.components.useableitem and item.components.useableitem._onusefn then
-			item.components.useableitem.onusefn = item.components.useableitem._onusefn
-			item.components.useableitem._onusefn = nil
-		end
-		
-		inst.AnimState:ClearOverrideSymbol(symbol)
-		inst.AnimState:HideSymbol(symbol)
+		Upequip(inst, item)
 		play_jump = true
 	end
 	
@@ -66,7 +77,7 @@ local function UpdateEquip(inst, data)
 			data.item.components.useableitem.onusefn = pass
 		end
 		
-		for i = 1, 3 do
+		for i = 1, SLOTS_COUNT do
 			if not inst.items[i] then
 				inst.items[i] = data.item
 				break
@@ -98,7 +109,7 @@ local function onworkfinished(inst)
 end
 
 local function onworked(inst, worker, workleft)
-    if workleft > 0 then
+    if workleft > 0 and not inst:HasTag("burnt") then
         inst.AnimState:PlayAnimation("hit")
         inst.AnimState:PushAnimation("idle")
 
@@ -109,7 +120,24 @@ local function onworked(inst, worker, workleft)
     end
 end
 
-local SLOTS_INDEX = DUMMY_SLOTS
+local function OnBurnt(inst)
+	for slot, item in pairs(inst.items) do
+		Upequip(inst, item)
+		inst.items[slot] = nil
+	end
+end
+
+local function onsave(inst, data)
+    if inst.components.burnable ~= nil and inst.components.burnable:IsBurning() or inst:HasTag("burnt") then
+        data.burnt = true
+    end
+end
+
+local function onload(inst, data)
+    if data ~= nil and data.burnt then
+        inst.components.burnable.onburnt(inst)
+    end
+end
 
 local function fn()
     local inst = CreateEntity()
@@ -187,12 +215,18 @@ local function fn()
 		inst.components.builder[k] = pass
 	end
 
-	MakeHauntableWork(inst)
+	MakeHauntableWork(inst)	
+	MakeSmallBurnable(inst, nil, nil, true)
+	MakeSmallPropagator(inst)
 	
 	inst:ListenForEvent("onbuilt", OnBuild)
 	inst:ListenForEvent("itemget", UpdateEquip)
 	inst:ListenForEvent("itemlose", UpdateEquip)
-
+	inst:ListenForEvent("burntup", OnBurnt)
+	
+	inst.OnSave = onsave
+	inst.OnLoad = onload
+	
     return inst
 end
 
