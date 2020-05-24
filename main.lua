@@ -139,7 +139,7 @@ STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
 STRINGS.CHARACTERS.WILLOW.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.DUMMY = "Wolfgang thinks it's a wooden man."
 STRINGS.CHARACTERS.WENDY.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
 STRINGS.CHARACTERS.WOODIE.DESCRIBE.DUMMY = "What a waste of wood."
