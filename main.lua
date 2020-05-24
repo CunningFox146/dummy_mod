@@ -131,7 +131,7 @@ nil,
 nil,
 nil,
 nil,
-"images/inventoryimages/dummy.xml",
+"images/dummy_inventoryimages.xml",
 "dummy.tex")
 
 STRINGS.NAMES.DUMMY = "Dummy"

@@ -2,8 +2,8 @@ local assets =
 {
     Asset("ANIM", "anim/dummy.zip"),
 	
-    Asset("IMAGE", "images/inventoryimages/dummy.tex"),
-    Asset("ATLAS", "images/inventoryimages/dummy.xml"),
+    Asset("IMAGE", "images/dummy_inventoryimages.tex"),
+    Asset("ATLAS", "images/dummy_inventoryimages.xml"),
 }
 
 local pass = function() return true end
