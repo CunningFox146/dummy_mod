@@ -20,6 +20,8 @@ if not env.MODROOT:find("workshop-") then
 	CHEATS_ENABLED = true
 end
 
+modimport("scripts/libs/skins_api.lua")
+
 DUMMY_SLOTS = {
 	[EQUIPSLOTS.HANDS] = 1,
 	[EQUIPSLOTS.BODY] = 2,
