@@ -1,5 +1,5 @@
 -- Made by CunningFox
--- Original code by Ysovuka/Kzisor
+-- Thanks to Ysovuka/Kzisor for the base code
 
 local env = env
 GLOBAL.setfenv(1, GLOBAL)

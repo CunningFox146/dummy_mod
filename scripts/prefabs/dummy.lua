@@ -257,10 +257,13 @@ return Prefab("dummy", fn, assets, prefabs),
 			Asset("ANIM", "anim/dummy_formal.zip"),
 		},
 		base_prefab = "dummy",
-		type = "item",
-		build_name_override = "dummy_formal",
-		rarity = "Timeless",
 		fn = formal,
+		rarity = "Timeless",
+		reskinable = true,
+		
+		build_name_override = "dummy_formal",
+		
+		type = "item",
 		skin_tags = { },
-		release_group = 92,
+		release_group = 0,
 	})
