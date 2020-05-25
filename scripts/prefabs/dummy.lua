@@ -156,7 +156,7 @@ local function fn()
     inst.AnimState:HideSymbol("swap_body")
     inst.AnimState:Hide("LANTERN_OVERLAY")
 	
-    inst.MiniMapEntity:SetIcon("dummy.png")
+    inst.MiniMapEntity:SetIcon("dummy.tex")
 
 	inst:AddTag("structure")
 
@@ -232,6 +232,8 @@ end
 
 local function formal()
 	local inst = fn()
+	
+	inst.MiniMapEntity:SetIcon("dummy_formal.tex")
 	
 	inst.AnimState:SetBuild("dummy_formal")
 	
