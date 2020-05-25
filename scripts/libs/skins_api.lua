@@ -5,6 +5,25 @@ local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
 local OFFICIAL_PREFABS = {}
+if not rawget(_G, "MODDED_SKINS") then
+	global("MODDED_SKINS")
+	MODDED_SKINS = {}
+end
+
+local function IsSkinModded(skin)
+	for _, skins in pairs(MODDED_SKINS) do
+		for name, _ in pairs(skins) do
+			if name == skin then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+local function HasSkins(item)
+	return MODDED_SKINS[item.base_prefab or item.prefab] 
+end
 
 local _RegisterPrefabs = ModManager.RegisterPrefabs
 ModManager.RegisterPrefabs = function(self, ...)
@@ -169,6 +188,75 @@ env.AddComponentPostInit("playercontroller", function(self)
 	end
 end)
 
+-- Patch inventory components so all moded skins are avalible to everyone
+local _CheckClientOwnership = InventoryProxy.CheckClientOwnership
+function InventoryProxy:CheckClientOwnership(userid, item, ...)
+	if IsSkinModded(item) then
+		return true
+	end
+	return _CheckClientOwnership(self, userid, item, ...)
+end
+
+-- SpawnSaveRecord
+-- inst:GetSaveRecord
+
+-- Fox: Since we're spawning different prefabs instead of applying skins, we can't really resking modded items
+-- Sike! If item supports it, we can just GetSaveRecord, then change the prefab and SpawnSaveRecord right where the item is!
+-- Keep in mind that the original entity will be removed, so all references must be cleared!
+function ReskinModEntity(inst, skin)
+	local data = inst:GetSaveRecord()
+	data.prefab = skin
+	
+	inst:PushEvent("reskin", {skin = skin})
+	inst:Remove()
+	
+	local new = SpawnSaveRecord(data)
+	new:PushEvent("reskined_spawn")
+	
+	return new
+end
+
+env.AddPrefabPostInit("reskin_tool", function(inst)
+	local spellcaster = inst.components.spellcaster
+	
+	local _can_cast_fn = inst.components.spellcaster
+	spellcaster.can_cast_fn = function(doer, target, ...)
+		if HasSkins(target) then
+			return true
+		end
+		
+		return _can_cast_fn(doer, target, ...)
+	end
+	
+	-- Our custom reskinner!
+	local _spell = spellcaster.spell
+	spellcaster.spell = function(inst, target, ...)
+		if not HasSkins(target) then
+			return _spell(inst, target, ...)
+		end
+		
+		SpawnAt("explode_reskin", target)
+
+		local prefab = target.base_prefab or target.prefab
+		local skin = target.skinname or target.prefab
+		
+		if not inst._cached_reskinname[prefab] then
+			inst._cached_reskinname[prefab] = skin
+		end
+		
+		while inst._cached_reskinname[prefab] == skin do
+			for item_type, _ in pairs(MODDED_SKINS[prefab]) do
+				if item_type ~= skin then
+					inst._cached_reskinname[prefab] = item_type
+					break
+				end
+			end
+		end
+		
+		ReskinModEntity(target, inst._cached_reskinname[prefab])
+	end
+end)
+
 function CreateModPrefabSkin(item, info)
 	-- Fox: This is never even gets called, but CreatePrefabSkin requires it
 	if not rawget(_G, info.base_prefab.."_clear_fn") then
@@ -188,8 +276,20 @@ function CreateModPrefabSkin(item, info)
 		if not info.custom_name then
 			inst:SetPrefabNameOverride(info.base_prefab)
 		end
+		
+		inst.skinname = item
+		inst.base_prefab = info.base_prefab
+		inst.reskinable = info.reskinable or true
+		
 		return inst
 	end
+	
+	if not MODDED_SKINS[info.base_prefab] then
+		MODDED_SKINS[info.base_prefab] = {
+			[info.base_prefab] = true, -- Base prefab counts as a skin!
+		}
+	end
+	MODDED_SKINS[info.base_prefab][item] = true
 	
 	return prefab
 end
