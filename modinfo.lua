@@ -1,5 +1,5 @@
 name =						" Dummy mod"
-version = 					"1.0"
+version = 					"1.0.1"
 description =				"Version: "..version
 author =					"POWD3d4, Cunning fox"
 
