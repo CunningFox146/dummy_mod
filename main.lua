@@ -7,11 +7,11 @@ PrefabFiles =
 
 Assets =
 {
-    Asset("IMAGE", "minimap/minimap_dummy.tex"),
-    Asset("ATLAS", "minimap/minimap_dummy.xml"),
+    Asset("IMAGE", "images/inventoryimages/dummy.tex"),
+    Asset("ATLAS", "images/inventoryimages/dummy.xml"),
 }
 
-AddMinimapAtlas("minimap/minimap_dummy.xml")
+AddMinimapAtlas("images/inventoryimages/dummy.xml")
 
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
