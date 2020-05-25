@@ -235,6 +235,10 @@ local function placer(inst, ...)
     inst.AnimState:HideSymbol("swap_object")
     inst.AnimState:HideSymbol("swap_body")
     inst.AnimState:Hide("LANTERN_OVERLAY")
+	
+	inst.ApplySkin = function(inst, skin)
+		print("ApplySkin", skin)
+	end
 end
 
 return Prefab("dummy", fn, assets, prefabs),
@@ -244,7 +248,7 @@ return Prefab("dummy", fn, assets, prefabs),
 		base_prefab = "dummy",
 		type = "item",
 		build_name_override = "dummy",
-		rarity = "Distinguished",
+		rarity = "Lustrous",
 		fn = fn,
 		skin_tags = { },
 		release_group = 92,

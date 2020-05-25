@@ -143,6 +143,8 @@ _G.MadeRecipeSkinnable("dummy", {
 	},
 })
 
+STRINGS.SKIN_NAMES.dummy_formal = "Formal dummy"
+
 STRINGS.NAMES.DUMMY = "Dummy"
 STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."
 

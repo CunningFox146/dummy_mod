@@ -1,5 +1,5 @@
--- Original code by Ysovuka/Kzisor
 -- Made by CunningFox
+-- Original code by Ysovuka/Kzisor
 
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
@@ -154,6 +154,20 @@ end
 
 env.AddClassPostConstruct("widgets/recipepopup", RecipePopupPostConstruct)
 env.AddComponentPostInit("builder", BuilderSkinPostInit)
+
+-- Apply item's skin to placer
+env.AddComponentPostInit("playercontroller", function(self)
+	local _StartBuildPlacementMode = self.StartBuildPlacementMode
+	function self:StartBuildPlacementMode(...)
+		local val = {_StartBuildPlacementMode(self, ...)}
+		
+		if self.placer and self.placer.ApplySkin and self.placer_recipe_skin then
+			self.placer:ApplySkin(self.placer_recipe_skin)
+		end
+		
+		return unpack(val)
+	end
+end)
 
 function CreateModPrefabSkin(item, info)
 	-- Fox: This is never even gets called, but CreatePrefabSkin requires it
