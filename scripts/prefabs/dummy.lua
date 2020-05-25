@@ -230,7 +230,7 @@ local function fn()
     return inst
 end
 
-local function placer(inst)
+local function placer(inst, ...)
     inst.AnimState:HideSymbol("swap_hat")
     inst.AnimState:HideSymbol("swap_object")
     inst.AnimState:HideSymbol("swap_body")
@@ -238,4 +238,14 @@ local function placer(inst)
 end
 
 return Prefab("dummy", fn, assets, prefabs),
-	MakePlacer("dummy_placer", "dummy", "dummy", "anim", nil, nil, nil, nil, nil, nil, placer)
+	MakePlacer("dummy_placer", "dummy", "dummy", "anim", nil, nil, nil, nil, nil, nil, placer),
+	CreateModPrefabSkin("dummy_formal",
+	{
+		base_prefab = "dummy",
+		type = "item",
+		build_name_override = "dummy",
+		rarity = "Distinguished",
+		fn = fn,
+		skin_tags = { },
+		release_group = 92,
+	})

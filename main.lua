@@ -20,7 +20,7 @@ if not env.MODROOT:find("workshop-") then
 	CHEATS_ENABLED = true
 end
 
-modimport("scripts/libs/skins_api.lua")
+env.modimport("scripts/libs/skins_api.lua")
 
 DUMMY_SLOTS = {
 	[EQUIPSLOTS.HANDS] = 1,
@@ -124,7 +124,7 @@ env.AddComponentPostInit("fueled", function(self)
 	end
 end)
 
-env.AddRecipe("dummy",
+local rec = env.AddRecipe("dummy",
 {Ingredient("boards", 2), Ingredient("log", 1), Ingredient("beefalowool", 4)},
 RECIPETABS.TOWN,
 TECH.SCIENCE_TWO,
@@ -136,12 +136,19 @@ nil,
 "images/inventoryimages/dummy.xml",
 "dummy.tex")
 
+_G.MadeRecipeSkinnable("dummy", {
+	dummy_formal = {
+		atlas = "images/inventoryimages/dummy.xml",
+		image = "dummy.tex",
+	},
+})
+
 STRINGS.NAMES.DUMMY = "Dummy"
 STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
 STRINGS.CHARACTERS.WILLOW.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.DUMMY = "Wolfgang thinks it's a wooden man."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.DUMMY = "Is a wooden man."
 STRINGS.CHARACTERS.WENDY.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.DUMMY = "Looks dumb. Maybe I should dress it with something else?"
 STRINGS.CHARACTERS.WOODIE.DESCRIBE.DUMMY = "What a waste of wood."
