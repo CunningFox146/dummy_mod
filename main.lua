@@ -139,7 +139,7 @@ nil,
 _G.MadeRecipeSkinnable("dummy", {
 	dummy_formal = {
 		atlas = "images/inventoryimages/dummy.xml",
-		image = "dummy.tex",
+		image = "dummy_formal.tex",
 	},
 })
 
