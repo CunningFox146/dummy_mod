@@ -136,7 +136,7 @@ nil,
 "images/inventoryimages/dummy.xml",
 "dummy.tex")
 
-_G.MadeRecipeSkinnable("dummy", {
+MadeRecipeSkinnable("dummy", {
 	dummy_formal = {
 		atlas = "images/inventoryimages/dummy.xml",
 		image = "dummy_formal.tex",
