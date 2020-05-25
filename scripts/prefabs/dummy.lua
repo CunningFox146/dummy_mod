@@ -230,12 +230,40 @@ local function fn()
     return inst
 end
 
-local function placer(inst)
+local function formal()
+	local inst = fn()
+	
+	inst.AnimState:SetBuild("dummy_formal")
+	
+	return inst
+end
+
+local function placer(inst, ...)
     inst.AnimState:HideSymbol("swap_hat")
     inst.AnimState:HideSymbol("swap_object")
     inst.AnimState:HideSymbol("swap_body")
     inst.AnimState:Hide("LANTERN_OVERLAY")
+	
+	inst.ApplySkin = function(inst, skin)
+		inst.AnimState:SetBuild("dummy_formal")
+	end
 end
 
 return Prefab("dummy", fn, assets, prefabs),
-	MakePlacer("dummy_placer", "dummy", "dummy", "anim", nil, nil, nil, nil, nil, nil, placer)
+	MakePlacer("dummy_placer", "dummy", "dummy", "anim", nil, nil, nil, nil, nil, nil, placer),
+	CreateModPrefabSkin("dummy_formal",
+	{
+		assets = {
+			Asset("ANIM", "anim/dummy_formal.zip"),
+		},
+		base_prefab = "dummy",
+		fn = formal,
+		rarity = "Timeless",
+		reskinable = true,
+		
+		build_name_override = "dummy_formal",
+		
+		type = "item",
+		skin_tags = { },
+		release_group = 0,
+	})
