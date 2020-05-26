@@ -219,7 +219,7 @@ end
 env.AddPrefabPostInit("reskin_tool", function(inst)
 	local spellcaster = inst.components.spellcaster
 	
-	local _can_cast_fn = inst.components.spellcaster
+	local _can_cast_fn = inst.components.spellcaster.can_cast_fn
 	spellcaster.can_cast_fn = function(doer, target, ...)
 		if HasSkins(target) then
 			return true

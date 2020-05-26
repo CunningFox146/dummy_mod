@@ -33,7 +33,7 @@ end
 
 local function Upequip(inst, item)
 	local symbol = SYMBOLS[item.components.equippable.equipslot]
-		
+	
 	item.components.equippable:Unequip(inst)
 	
 	if item.components.useableitem and item.components.useableitem._onusefn then
@@ -168,11 +168,11 @@ local function fn()
         return inst
     end
 	
-	-- FOX: Dirty hack for eyebrella!
-	inst.DynamicShadow = {
-		SetSize = pass,
-		SetEnabled = pass,
-	}
+	-- FOX: Dirty hack for eyebrella and purple staff. Fake DynamicShadow.
+	inst.DynamicShadow = {}
+	for fn, _ in pairs(DynamicShadow) do
+		inst.DynamicShadow[fn] = pass
+	end
 	
 	inst.items = {}
 	
