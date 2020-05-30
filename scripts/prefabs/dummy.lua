@@ -237,6 +237,15 @@ local function formal()
 	
 	inst.AnimState:SetBuild("dummy_formal")
 	
+	if not TheWorld.ismastersim then
+		return
+	end
+	
+	local recipeloot = inst.components.lootdropper:GetRecipeLoot(AllRecipes.dummy)
+	for k,v in ipairs(recipeloot) do
+		inst.components.lootdropper:AddChanceLoot(v, 1)
+	end
+	
 	return inst
 end
 

@@ -116,7 +116,8 @@ end
 env.AddComponentPostInit("fueled", function(self)
 	local _StartConsuming = self.StartConsuming
 	function self:StartConsuming(...)
-		if not self.accepting and self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner and
+		if not self.accepting and not self.inst.components.burnable and
+		self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner and
 		self.inst.components.inventoryitem.owner.prefab == "dummy" then
 			return true
 		end
