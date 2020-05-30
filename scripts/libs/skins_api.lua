@@ -186,6 +186,16 @@ env.AddComponentPostInit("playercontroller", function(self)
 		
 		return unpack(val)
 	end
+	-- ThePlayer.components.builder:GiveAllRecipes()
+	-- Fix for sending skin's id since we don't have one
+	-- local _RemoteMakeRecipeAtPoint = self.RemoteMakeRecipeAtPoint
+	-- function self:RemoteMakeRecipeAtPoint(recipe, pt, rot, skin, ...)
+		-- if skin and IsSkinModded(skin) then
+			-- print(recipe, pt, rot, skin, ...)
+			-- skin = nil
+		-- end
+		-- return _RemoteMakeRecipeAtPoint(self, recipe, pt, rot, skin, ...)
+	-- end
 end)
 
 -- Patch inventory components so all moded skins are avalible to everyone
@@ -290,6 +300,14 @@ function CreateModPrefabSkin(item, info)
 		}
 	end
 	MODDED_SKINS[info.base_prefab][item] = true
+	
+	PREFAB_SKINS_IDS = {}
+	for prefab, skins in pairs(PREFAB_SKINS) do
+		PREFAB_SKINS_IDS[prefab] = {}
+		for k,v in pairs(skins) do
+			PREFAB_SKINS_IDS[prefab][v] = k
+		end
+	end
 	
 	return prefab
 end
