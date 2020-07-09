@@ -22,7 +22,7 @@ local function IsSkinModded(skin)
 end
 
 local function HasSkins(item)
-	return MODDED_SKINS[item.base_prefab or item.prefab] 
+	return item and MODDED_SKINS[item.base_prefab or item.prefab] or false
 end
 
 local _RegisterPrefabs = ModManager.RegisterPrefabs
@@ -227,9 +227,13 @@ function ReskinModEntity(inst, skin)
 end
 
 env.AddPrefabPostInit("reskin_tool", function(inst)
+	if not TheWorld.ismastersim then
+		return
+	end
+
 	local spellcaster = inst.components.spellcaster
 	
-	local _can_cast_fn = inst.components.spellcaster.can_cast_fn
+	local _can_cast_fn = spellcaster.can_cast_fn
 	spellcaster.can_cast_fn = function(doer, target, ...)
 		if HasSkins(target) then
 			return true
