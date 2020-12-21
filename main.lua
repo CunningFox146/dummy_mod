@@ -63,6 +63,9 @@ params.dummy =
 	acceptsstacks = false,
 	type = "chest",
 }
+-- Skin has custom prefab so we need to sync it with original
+params.dummy_formal = params.dummy
+params.dummy_nature = params.dummy
 
 -- Chek if item:
 -- 1. Is equippable
@@ -118,7 +121,8 @@ env.AddComponentPostInit("fueled", function(self)
 	function self:StartConsuming(...)
 		if not self.accepting and not self.inst.components.burnable and
 		self.inst.components.inventoryitem and self.inst.components.inventoryitem.owner and
-		self.inst.components.inventoryitem.owner.prefab == "dummy" then
+		self.inst.components.inventoryitem.owner:HasTag("dummy") then
+			self:StopConsuming()
 			return true
 		end
 		return _StartConsuming(self, ...)
@@ -130,7 +134,7 @@ local rec = env.AddRecipe("dummy",
 RECIPETABS.TOWN,
 TECH.SCIENCE_TWO,
 "dummy_placer",
-nil,
+1,
 nil,
 nil,
 nil,
@@ -142,9 +146,14 @@ MadeRecipeSkinnable("dummy", {
 		atlas = "images/inventoryimages/dummy.xml",
 		image = "dummy_formal.tex",
 	},
+	dummy_nature = {
+		atlas = "images/inventoryimages/dummy.xml",
+		image = "dummy_nature.tex",
+	},
 })
 
 STRINGS.SKIN_NAMES.dummy_formal = "Formal dummy"
+STRINGS.SKIN_NAMES.dummy_nature = "Formal dummy"
 
 STRINGS.NAMES.DUMMY = "Dummy"
 STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."

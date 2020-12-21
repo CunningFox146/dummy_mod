@@ -1,6 +1,7 @@
 local assets =
 {
     Asset("ANIM", "anim/dummy.zip"),
+    Asset("ANIM", "anim/dummy_animation.zip"),
 	
     Asset("IMAGE", "images/inventoryimages/dummy.tex"),
     Asset("ATLAS", "images/inventoryimages/dummy.xml"),
@@ -92,7 +93,8 @@ end
 
 local function OnBuild(inst)
 	inst.AnimState:PlayAnimation("place")
-    inst.AnimState:PushAnimation("idle")
+	inst.AnimState:PushAnimation("idle")
+	inst.SoundEmitter:PlaySound("dontstarve/common/rabbit_hutch_craft")
 end
 
 
@@ -159,6 +161,7 @@ local function fn()
     inst.MiniMapEntity:SetIcon("dummy.tex")
 
 	inst:AddTag("structure")
+	inst:AddTag("dummy")
 
 	MakeObstaclePhysics(inst, .3)
 
@@ -235,7 +238,28 @@ local function formal()
 	
 	inst.MiniMapEntity:SetIcon("dummy_formal.tex")
 	
-	inst.AnimState:SetBuild("dummy_formal")
+	-- inst.AnimState:SetBuild("dummy_formal")
+	inst.AnimState:AddOverrideBuild("dummy_formal")
+	
+	if not TheWorld.ismastersim then
+		return inst
+	end
+	
+	local recipeloot = inst.components.lootdropper:GetRecipeLoot(AllRecipes.dummy)
+	for k,v in ipairs(recipeloot) do
+		inst.components.lootdropper:AddChanceLoot(v, 1)
+	end
+	
+	return inst
+end
+
+local function nature()
+	local inst = fn()
+	
+	inst.MiniMapEntity:SetIcon("dummy_nature.tex")
+	
+	-- inst.AnimState:SetBuild("dummy_formal")
+	inst.AnimState:AddOverrideBuild("dummy_nature")
 	
 	if not TheWorld.ismastersim then
 		return inst
@@ -256,7 +280,7 @@ local function placer(inst, ...)
     inst.AnimState:Hide("LANTERN_OVERLAY")
 	
 	inst.ApplySkin = function(inst, skin)
-		inst.AnimState:SetBuild("dummy_formal")
+		inst.AnimState:AddOverrideBuild(skin)
 	end
 end
 
@@ -264,9 +288,9 @@ return Prefab("dummy", fn, assets, prefabs),
 	MakePlacer("dummy_placer", "dummy", "dummy", "anim", nil, nil, nil, nil, nil, nil, placer),
 	CreateModPrefabSkin("dummy_formal",
 	{
-		assets = {
+		assets = ConcatArrays(assets, {
 			Asset("ANIM", "anim/dummy_formal.zip"),
-		},
+		}),
 		base_prefab = "dummy",
 		fn = formal,
 		rarity = "Timeless",
@@ -277,4 +301,21 @@ return Prefab("dummy", fn, assets, prefabs),
 		type = "item",
 		skin_tags = { },
 		release_group = 0,
+	}),
+	CreateModPrefabSkin("dummy_nature",
+	{
+		assets = ConcatArrays(assets, {
+			Asset("ANIM", "anim/dummy_nature.zip"),
+		}),
+		base_prefab = "dummy",
+		fn = nature,
+		rarity = "Timeless",
+		reskinable = true,
+		
+		build_name_override = "dummy_nature",
+		
+		type = "item",
+		skin_tags = { },
+		release_group = 0,
 	})
+

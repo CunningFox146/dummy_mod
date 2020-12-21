@@ -2,7 +2,8 @@
 <Atlas>
 	<Texture filename="dummy.tex" />
 	<Elements>
-		<Element name="dummy.tex" u1="0.001" u2="0.3505625" v2="0.999" v1="0.03225" variant="" />
-		<Element name="dummy_formal.tex" u1="0.3525625" u2="0.71775" v2="0.999" v1="0.001" variant="" />
+		<Element name="dummy.tex" u1="0.001" u2="0.3505625" v2="0.999" v1="0.516625" variant="" />
+		<Element name="dummy_formal.tex" u1="0.3525625" u2="0.71775" v2="0.999" v1="0.501" variant="" />
+		<Element name="dummy_nature.tex" u1="0.001" u2="0.3818125" v2="0.499" v1="0.0088125" variant="" />
 	</Elements>
 </Atlas>
