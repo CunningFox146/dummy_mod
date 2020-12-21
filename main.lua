@@ -153,7 +153,7 @@ MadeRecipeSkinnable("dummy", {
 })
 
 STRINGS.SKIN_NAMES.dummy_formal = "Formal dummy"
-STRINGS.SKIN_NAMES.dummy_nature = "Formal dummy"
+STRINGS.SKIN_NAMES.dummy_nature = "Verdant dummy"
 
 STRINGS.NAMES.DUMMY = "Dummy"
 STRINGS.RECIPE_DESC.DUMMY = "It's like a chest, but for armor."
